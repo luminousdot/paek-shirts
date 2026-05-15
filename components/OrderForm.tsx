@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, Mail, User, Shirt, Ruler, Send } from "lucide-react";
+import { Check, Mail, User, Shirt, Ruler, Send, ZoomIn, X } from "lucide-react";
 import { submitOrder } from "@/app/actions/submitOrder";
 
 const versions = [
@@ -80,6 +80,7 @@ export default function OrderForm() {
   const [email, setEmail] = useState("");
   const [note, setNote] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -174,6 +175,13 @@ export default function OrderForm() {
                         <Check size={18} />
                       </div>
                     )}
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); setPreviewImage(version.image); }}
+                      className={`absolute bottom-3 right-3 rounded-full bg-neutral-950/70 p-2 text-neutral-300 backdrop-blur transition hover:bg-neutral-950 hover:text-white ${active ? "right-3" : ""}`}
+                    >
+                      <ZoomIn size={15} />
+                    </button>
                   </div>
                   <div className="p-5">
                     <div className="mb-2 flex items-center justify-between gap-3">
@@ -292,6 +300,31 @@ export default function OrderForm() {
           </form>
         </motion.aside>
       </section>
+
+      {previewImage && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setPreviewImage(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/90 p-4 backdrop-blur-sm"
+        >
+          <button
+            onClick={() => setPreviewImage(null)}
+            className="absolute right-5 top-5 rounded-full bg-neutral-800 p-2 text-neutral-300 transition hover:bg-neutral-700 hover:text-white"
+          >
+            <X size={20} />
+          </button>
+          <motion.img
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            src={previewImage}
+            alt="Preview"
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[90vh] max-w-full rounded-2xl object-contain shadow-2xl"
+          />
+        </motion.div>
+      )}
     </main>
   );
 }
