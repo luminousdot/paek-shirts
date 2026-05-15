@@ -11,28 +11,28 @@ const versions = [
     name: "Topo Division",
     type: "Unisex",
     description: "Minimal crna majica sa topo linijama i penjačem.",
-    image: "/designs/topo-division.jpg",
+    image: "/designs/topo-division.png",
   },
   {
     id: "urban-boulder-men",
     name: "Indoor Boulder Gym",
     type: "Muška",
     description: "Indoor boulder zid, soliteri u pozadini, tamni sportski fazon.",
-    image: "/designs/urban-boulder-men.jpg",
+    image: "/designs/urban-boulder-men.png",
   },
   {
     id: "urban-boulder-women",
     name: "Indoor Boulder Gym",
     type: "Ženska",
     description: "Ženski kroj sa indoor boulder scenom i urbanim pozadinama.",
-    image: "/designs/urban-boulder-women.jpg",
+    image: "/designs/urban-boulder-women.png",
   },
   {
     id: "planet-boulder",
     name: "Planet Boulder",
     type: "Unisex",
     description: "Planeta sa hvatovima, gradski soliteri i boulder scena.",
-    image: "/designs/planet-boulder.jpg",
+    image: "/designs/planet-boulder.png",
   },
 ];
 
