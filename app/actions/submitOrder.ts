@@ -18,6 +18,7 @@ export async function submitOrder(data: OrderData): Promise<OrderResult> {
   const { error: dbError } = await supabase.from("orders").insert([data]);
 
   if (dbError) {
+    console.error("Supabase error:", dbError);
     return { success: false, error: "Failed to save order." };
   }
 
