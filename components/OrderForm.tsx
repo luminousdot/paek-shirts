@@ -243,7 +243,7 @@ export default function OrderForm() {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="npr. Vladimir Dević"
+                placeholder="npr. Stevan Kitić"
                 className="w-full rounded-2xl border border-neutral-700 bg-neutral-950 px-4 py-3 outline-none transition placeholder:text-neutral-600 focus:border-amber-400"
               />
             </div>
