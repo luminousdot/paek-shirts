@@ -154,16 +154,18 @@ export default function OrderForm() {
             {versions.map((version) => {
               const active = selectedVersion.id === version.id;
               return (
-                <button
+                <div
                   key={version.id}
-                  onClick={() => setSelectedVersion(version)}
-                  className={`group overflow-hidden rounded-3xl border text-left transition ${
+                  className={`group relative overflow-hidden rounded-3xl border text-left transition cursor-pointer ${
                     active
                       ? "border-amber-400 bg-neutral-900 shadow-2xl shadow-amber-950/30"
                       : "border-neutral-800 bg-neutral-900/50 hover:border-neutral-600"
                   }`}
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-900">
+                  <div
+                    className="relative aspect-[4/3] overflow-hidden bg-neutral-900"
+                    onClick={() => setSelectedVersion(version)}
+                  >
                     <img
                       src={version.image}
                       alt={version.name}
@@ -178,12 +180,12 @@ export default function OrderForm() {
                     <button
                       type="button"
                       onClick={(e) => { e.stopPropagation(); setPreviewImage(version.image); }}
-                      className={`absolute bottom-3 right-3 rounded-full bg-neutral-950/70 p-2 text-neutral-300 backdrop-blur transition hover:bg-neutral-950 hover:text-white ${active ? "right-3" : ""}`}
+                      className="absolute bottom-3 right-3 rounded-full bg-neutral-950/70 p-2 text-neutral-300 backdrop-blur transition hover:bg-neutral-950 hover:text-white"
                     >
                       <ZoomIn size={15} />
                     </button>
                   </div>
-                  <div className="p-5">
+                  <div className="p-5" onClick={() => setSelectedVersion(version)}>
                     <div className="mb-2 flex items-center justify-between gap-3">
                       <h2 className="text-lg font-semibold">{version.name}</h2>
                       <span className="rounded-full border border-neutral-700 px-3 py-1 text-xs text-neutral-300">
@@ -192,7 +194,7 @@ export default function OrderForm() {
                     </div>
                     <p className="text-sm leading-6 text-neutral-400">{version.description}</p>
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
